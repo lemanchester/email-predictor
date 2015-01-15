@@ -9,7 +9,7 @@ class CheckEmailPattern < Struct.new(:first_name, :last_name, :domain,
   EMAIL_PATTERNS = [ FirstNameDotLastName, FirstNameDotLastInitial,
     FirstInitialDotLastName, FirstInitialDotLastInitial ]
 
-  def get_email_pattern
+  def get_email_pattern!
     EMAIL_PATTERNS.each do |pattern|
       return pattern if pattern.new(first_name, last_name, domain).get_email == reference_email
     end
