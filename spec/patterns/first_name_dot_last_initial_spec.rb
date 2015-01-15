@@ -1,6 +1,6 @@
 require "spec_helper"
 
-describe FirstInitialDotLastInitial do
+describe FirstNameDotLastInitial do
   let(:first_name) { "Gabriel" }
   let(:last_name)  { "Medina"  }
   let(:domain)     { "asp.com" }
@@ -9,7 +9,7 @@ describe FirstInitialDotLastInitial do
 
   describe "#get_email" do
     it "returns the right email pattern" do
-      expect(subject.get_email).to eql("g.m@asp.com")
+      expect(subject.get_email).to eql("gabriel.m@asp.com")
     end
   end
 end
