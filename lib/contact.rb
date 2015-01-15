@@ -1,3 +1,5 @@
+require_relative "check_email_pattern"
+
 class Contact
 
   attr_reader :first_name, :last_name, :domain, :email
@@ -12,7 +14,7 @@ class Contact
 
   def get_email_pattern
     CheckEmailPattern.new(first_name, last_name,
-      domain, email).get_email_pattern
+      domain, email).get_email_pattern!
   end
 
 end
