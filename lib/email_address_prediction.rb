@@ -2,17 +2,17 @@ require_relative "contact"
 
 class EmailAddressPrediction
 
-  attr_reader :first_name, :last_name, :domain, :contacts
+  attr_reader :domain, :contacts
 
   def initialize(name, domain, reference_contacts)
-    full_name = name.split(" ")
-    @first_name = full_name.first
-    @last_name = full_name.last
     @domain = domain
     @contacts = parse_contacts(reference_contacts)
   end
 
-  def email
+  # It must be included after the `initialize`
+  include NameParser
+
+  def email!
     pattern = contact_by_reference_domain.get_email_pattern
 
     pattern.new(first_name, last_name, domain).get_email
@@ -23,6 +23,8 @@ class EmailAddressPrediction
       Contact.new(name, email)
     end
   end
+
+  protected
 
   def contact_by_reference_domain
     contacts.each do |contact|

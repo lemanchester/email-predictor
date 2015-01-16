@@ -22,10 +22,10 @@ describe EmailAddressPrediction do
     it { expect(subject.contacts.first).to be_kind_of(Contact) }
   end
 
-  describe "#email" do
+  describe "#email!" do
 
     context "given a reference with first name dot last name" do
-      it { expect(subject.email).to eql("filipe.costa@stackbuilders.com") }
+      it { expect(subject.email!).to eql("filipe.costa@stackbuilders.com") }
     end
 
     context "given a reference with first initial and last name" do
@@ -38,7 +38,7 @@ describe EmailAddressPrediction do
         }
       end
 
-      it { expect(subject.email).to eql("f.c@stackbuilders.com") }
+      it { expect(subject.email!).to eql("f.c@stackbuilders.com") }
     end
 
     context "given a there isn't a reference" do
@@ -51,10 +51,17 @@ describe EmailAddressPrediction do
       end
 
       it "raise an runtime error" do
-        expect { subject.email }.to raise_error(RuntimeError, "No reference is found")
+        expect { subject.email! }.to raise_error(RuntimeError, "No reference is found")
       end
     end
   end
 
+  describe "#first_name" do
+    it { expect(subject.first_name).to eql("Filipe") }
+  end
+
+  describe "#last_name" do
+    it { expect(subject.last_name).to eql("Costa") }
+  end
 
 end

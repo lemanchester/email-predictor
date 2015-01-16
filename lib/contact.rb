@@ -1,16 +1,17 @@
 require_relative "check_email_pattern"
+require_relative "name_parser"
 
 class Contact
 
-  attr_reader :first_name, :last_name, :domain, :email
+  attr_reader :domain, :email
 
   def initialize(name, email)
-    full_name = name.split(" ")
-    @first_name = full_name.first
-    @last_name = full_name.last
     @domain = email[/@(.*?)\z/].gsub('@','')
     @email = email
   end
+
+  # It must be included after the `initialize`
+  include NameParser
 
   def get_email_pattern
     CheckEmailPattern.new(first_name, last_name,
