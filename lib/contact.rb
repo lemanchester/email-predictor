@@ -18,4 +18,12 @@ class Contact
       domain, email).get_email_pattern!
   end
 
+  # @param [Hash<String,String>] hash of contacts Name and Email
+  # @return [List<Contact>]
+  def self.parse(contacts)
+    contacts.map do |name, email|
+      Contact.new(name, email)
+    end
+  end
+
 end

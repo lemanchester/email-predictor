@@ -22,4 +22,23 @@ describe Contact do
     it { expect(subject.email).to eql("s.j@apple.com") }
   end
 
+  describe ".parse" do
+    let(:contacts) do
+      {
+        'John Doe'    => 'john.doe@mydomain.com',
+        'Joseph Wu'   => 'joseph.wu@mydomain.com',
+        'Linda Li'    => 'linda.li@mydomain.com',
+        'Larry Page'  => 'larry.p@google.com',
+        'Sergey Brin' => 's.brin@google.com',
+        'Steve Jobs'  => 's.j@apple.com'
+      }
+    end
+
+    subject { described_class.parse(contacts) }
+
+    it { expect(subject).to be_kind_of(Array) }
+
+    it { expect(subject.first).to be_kind_of(Contact) }
+  end
+
 end

@@ -6,7 +6,7 @@ class EmailAddressPrediction
 
   def initialize(name, domain, reference_contacts)
     @domain = domain
-    @contacts = parse_contacts(reference_contacts)
+    @contacts = Contact.parse(reference_contacts)
   end
 
   # It must be included after the `initialize`
@@ -16,12 +16,6 @@ class EmailAddressPrediction
     pattern = contact_by_reference_domain.get_email_pattern
 
     pattern.new(first_name, last_name, domain).get_email
-  end
-
-  def parse_contacts(reference_contacts)
-    reference_contacts.map do |name, email|
-      Contact.new(name, email)
-    end
   end
 
   protected
