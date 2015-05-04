@@ -2,12 +2,12 @@ require "spec_helper"
 
 describe EmailAddressPrediction do
   let(:name)   { "Filipe Costa" }
-  let(:domain) { "stackbuilders.com" }
+  let(:domain) { "mydomain.com" }
   let(:reference_contacts) do
     {
-      'John Doe'    => 'john.doe@stackbuilders.com',
-      'Joseph Wu'   => 'joseph.wu@stackbuilders.com',
-      'Linda Li'    => 'linda.li@stackbuilders.com',
+      'John Doe'    => 'john.doe@mydomain.com',
+      'Joseph Wu'   => 'joseph.wu@mydomain.com',
+      'Linda Li'    => 'linda.li@mydomain.com',
       'Larry Page'  => 'larry.p@google.com',
       'Sergey Brin' => 's.brin@google.com',
       'Steve Jobs'  => 's.j@apple.com'
@@ -25,20 +25,20 @@ describe EmailAddressPrediction do
   describe "#email!" do
 
     context "given a reference with first name dot last name" do
-      it { expect(subject.email!).to eql("filipe.costa@stackbuilders.com") }
+      it { expect(subject.email!).to eql("filipe.costa@mydomain.com") }
     end
 
     context "given a reference with first initial and last name" do
       let(:reference_contacts) do
         {
-          'John Doe'    => 'j.d@stackbuilders.com',
+          'John Doe'    => 'j.d@mydomain.com',
           'Larry Page'  => 'larry.p@google.com',
           'Sergey Brin' => 's.brin@google.com',
           'Steve Jobs'  => 's.j@apple.com'
         }
       end
 
-      it { expect(subject.email!).to eql("f.c@stackbuilders.com") }
+      it { expect(subject.email!).to eql("f.c@mydomain.com") }
     end
 
     context "given a there isn't a reference" do

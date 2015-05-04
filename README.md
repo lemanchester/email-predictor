@@ -1,22 +1,32 @@
+# Email Predictor
 
-Given the name, domain and a list of contacts, you should predict which is the email of the person.
+Given the name of a person (first and last), domain and a list of contacts,
+you should predict the person email's address looking through the contacts list.
 
-"Filipe Costa", stackbuilders.com
 
+### Example:
+
+Given name: "Casandra Sauer", domain: mydomain.com
+
+Contacts:
 {
-  'John Doe' => 'john.doe@stackbuilders.com',
-  'Joseph Wu' => 'joseph.wu@stackbuilders.com',
-  'Linda Li' => 'linda.li@stackbuilders.com',
-  'Larry Page' => 'larry.p@google.com',
+  'John Doe'    => 'john.doe@mydomain.com',
+  'Joseph Wu'   => 'joseph.wu@mydomain.com',
+  'Linda Li'    => 'linda.li@mydomain.com',
+  'Larry Page'  => 'larry.p@google.com',
   'Sergey Brin' => 's.brin@google.com',
-  'Steve Jobs' => 's.j@apple.com'
+  'Steve Jobs'  => 's.j@apple.com'
 }
 
+You should predict that the email is:
 
-You should only consider these 4 patterns:
+casandra.sauer@mydomain.com
 
-first_name_dot_last_name: "filipe.costa@stackbuilders.com"
-first_name_dot_last_initial: "filipe.c@stackbuilders.com"
-first_initial_dot_last_name: "f.costa@stackbuilders.com"
-first_initial_dot_last_initial: "f.c@stackbuilders.com"
+
+### You should only consider these 4 patterns:
+
+first_name_dot_last_name:       "casandra.sauer@mydomain.com"
+first_name_dot_last_initial:    "cansadra.s@mydomain.com"
+first_initial_dot_last_name:    "c.sauer@mydomain.com"
+first_initial_dot_last_initial: "c.s@mydomain.com"
 
