@@ -1,6 +1,7 @@
 require_relative "contact"
 
-class EmailAddressPrediction
+
+class EmailPredictor
 
   attr_reader :domain, :contacts
 
@@ -12,7 +13,9 @@ class EmailAddressPrediction
   # It must be included after the `initialize`
   include NameParser
 
-  def email!
+  # @return [String] it tries to prodect the email address
+  # given the name, domain and the contacts as references
+  def predict!
     find_contact_by_domain.get_email_pattern
       .new(first_name,
            last_name,

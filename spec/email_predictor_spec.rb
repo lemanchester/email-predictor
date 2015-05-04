@@ -1,6 +1,6 @@
 require "spec_helper"
 
-describe EmailAddressPrediction do
+describe EmailPredictor do
   let(:name)   { "Filipe Costa" }
   let(:domain) { "mydomain.com" }
   let(:reference_contacts) do
@@ -22,10 +22,10 @@ describe EmailAddressPrediction do
     it { expect(subject.contacts.first).to be_kind_of(Contact) }
   end
 
-  describe "#email!" do
+  describe "#predict!" do
 
     context "given a reference with first name dot last name" do
-      it { expect(subject.email!).to eql("filipe.costa@mydomain.com") }
+      it { expect(subject.predict!).to eql("filipe.costa@mydomain.com") }
     end
 
     context "given a reference with first initial and last name" do
@@ -38,7 +38,7 @@ describe EmailAddressPrediction do
         }
       end
 
-      it { expect(subject.email!).to eql("f.c@mydomain.com") }
+      it { expect(subject.predict!).to eql("f.c@mydomain.com") }
     end
 
     context "given a there isn't a reference" do
@@ -51,7 +51,7 @@ describe EmailAddressPrediction do
       end
 
       it "raise an runtime error" do
-        expect { subject.email! }.to raise_error(
+        expect { subject.predict! }.to raise_error(
           RuntimeError, "No contact found")
       end
     end
