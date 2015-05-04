@@ -51,7 +51,8 @@ describe EmailAddressPrediction do
       end
 
       it "raise an runtime error" do
-        expect { subject.email! }.to raise_error(RuntimeError, "No reference is found")
+        expect { subject.email! }.to raise_error(
+          RuntimeError, "No contact found")
       end
     end
   end

@@ -13,18 +13,20 @@ class EmailAddressPrediction
   include NameParser
 
   def email!
-    pattern = contact_by_reference_domain.get_email_pattern
-
-    pattern.new(first_name, last_name, domain).get_email
+    find_contact_by_domain.get_email_pattern
+      .new(first_name,
+           last_name,
+           domain
+          ).get_email
   end
 
   protected
 
-  def contact_by_reference_domain
-    contacts.each do |contact|
+  def find_contact_by_domain
+    contacts.find do |contact|
       return contact if contact.domain == domain
     end
-    raise 'No reference is found'
+    raise 'No contact found'
   end
 
 
